@@ -1,10 +1,15 @@
 fn main() {
-    let triangles = 5; // Кількість трикутників
-    let width = 2 * triangles - 1;
-
-    (1..=triangles).for_each(|i| {
-        let stars = 2 * i - 1;
-        let spaces = (width - stars) / 2;
-        println!("{:space$}{}", "", "*".repeat(stars), space = spaces);
-    });
+    let levels = vec![1, 1, 3, 1, 3, 5, 1, 3, 5, 7, 1, 3, 5, 7, 9, 1, 3, 5, 7, 9, 11];
+    let max_width = *levels.iter().max().unwrap();
+    
+    for &level in &levels {
+        let spaces = (max_width - level) / 2;
+        for _ in 0..spaces {
+            print!(" ");
+        }
+        for _ in 0..level {
+            print!("*");
+        }
+        println!();
+    }
 }
