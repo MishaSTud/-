@@ -1,0 +1,10 @@
+fn main() {
+    let triangles = 5; // Кількість трикутників
+    let width = 2 * triangles - 1;
+
+    (1..=triangles).for_each(|i| {
+        let stars = 2 * i - 1;
+        let spaces = (width - stars) / 2;
+        println!("{:space$}{}", "", "*".repeat(stars), space = spaces);
+    });
+}
