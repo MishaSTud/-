@@ -1,0 +1,23 @@
+fn grading_students(grades: Vec<i32>) -> Vec<i32> {
+    grades.iter().map(|&grade| {
+        if grade < 38 {
+            grade // Оцінка не змінюється
+        } else {
+            let next_multiple_of_5 = ((grade / 5) + 1) * 5; // Знаходимо наступне кратне 5
+            if next_multiple_of_5 - grade < 3 {
+                next_multiple_of_5 // Округляємо
+            } else {
+                grade // Не округляємо
+            }
+        }
+    }).collect() // Збираємо результати у вектор
+}
+
+fn main() {
+    let grades = vec![73, 67, 38, 33]; // Приклад вхідних даних
+    let result = grading_students(grades);
+    
+    for grade in result {
+        println!("{}", grade); // Вивід: 75, 67, 40, 33
+    }
+}
