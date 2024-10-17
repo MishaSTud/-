@@ -1,0 +1,14 @@
+fn mini_max_sum(arr: &[i64]) {
+    let mut sorted_arr = arr.to_vec();
+    sorted_arr.sort();
+    
+    let min_sum: i64 = sorted_arr.iter().take(4).sum();
+    let max_sum: i64 = sorted_arr.iter().skip(1).sum();
+    
+    println!("{} {}", min_sum, max_sum);
+}
+
+fn main() {
+    let arr = vec![1, 2, 3, 4, 5]; // Example input
+    mini_max_sum(&arr);
+}
