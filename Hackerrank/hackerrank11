@@ -1,0 +1,35 @@
+fn count_apples_and_oranges(s: i32, t: i32, a: i32, b: i32, apples: Vec<i32>, oranges: Vec<i32>) {
+    let mut apple_count = 0;
+    let mut orange_count = 0;
+
+    // Підрахунок яблук
+    for &apple in &apples {
+        let landing_position = a + apple; // Обчислюємо позицію, куди впаде яблуко
+        if landing_position >= s && landing_position <= t {
+            apple_count += 1; // Якщо яблуко впало на будинок, збільшуємо лічильник
+        }
+    }
+
+    // Підрахунок апельсинів
+    for &orange in &oranges {
+        let landing_position = b + orange; // Обчислюємо позицію, куди впаде апельсин
+        if landing_position >= s && landing_position <= t {
+            orange_count += 1; // Якщо апельсин впав на будинок, збільшуємо лічильник
+        }
+    }
+
+    // Виводимо результати
+    println!("{}", apple_count);
+    println!("{}", orange_count);
+}
+
+fn main() {
+    let s = 7; // Початкова точка будинку
+    let t = 11; // Кінцева точка будинку
+    let a = 5; // Позиція яблуні
+    let b = 15; // Позиція апельсинового дерева
+    let apples = vec![-2, 2, 1]; // Відстані, на які падають яблука
+    let oranges = vec![5, -6]; // Відстані, на які падають апельсини
+
+    count_apples_and_oranges(s, t, a, b, apples, oranges);
+}
