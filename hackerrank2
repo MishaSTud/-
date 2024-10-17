@@ -1,0 +1,21 @@
+fn simple_array_sum(ar: &[i32]) -> i32 {
+    ar.iter().sum()
+}
+
+fn main() {
+    let stdin = std::io::stdin();
+    let mut input = String::new();
+    stdin.read_line(&mut input).unwrap();
+    let ar_count: usize = input.trim().parse().unwrap();
+
+    input.clear();
+    stdin.read_line(&mut input).unwrap();
+    let ar: Vec<i32> = input
+        .trim()
+        .split_whitespace()
+        .map(|s| s.parse().unwrap())
+        .collect();
+
+    let result = simple_array_sum(&ar);
+    println!("{}", result);
+}
