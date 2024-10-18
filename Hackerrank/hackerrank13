@@ -1,0 +1,24 @@
+fn get_total_x(a: Vec<i32>, b: Vec<i32>) -> i32 {
+    let max_b = *b.iter().max().unwrap(); // Найбільше число в масиві b
+    let min_a = *a.iter().min().unwrap(); // Найменше число в масиві a
+
+    let mut count = 0;
+
+    // Перебираємо всі кратні min_a до max_b
+    for multiple in (min_a..=max_b).step_by(min_a as usize) {
+        // Перевіряємо, чи є multiple кратним усім елементам b
+        if b.iter().all(|&num| multiple % num == 0) {
+            count += 1; // Збільшуємо лічильник, якщо умова виконується
+        }
+    }
+
+    count
+}
+
+fn main() {
+    let a = vec![2, 4]; // Приклад масиву a
+    let b = vec![16, 32, 96]; // Приклад масиву b
+
+    let total = get_total_x(a, b);
+    println!("{}", total); // Виводимо результат
+}
