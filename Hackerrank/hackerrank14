@@ -1,0 +1,29 @@
+fn breaking_records(scores: Vec<i32>) -> Vec<i32> {
+    if scores.is_empty() {
+        return vec![0, 0]; // Якщо масив порожній, повертаємо [0, 0]
+    }
+
+    let mut max_score = scores[0];
+    let mut min_score = scores[0];
+    let mut max_count = 0;
+    let mut min_count = 0;
+
+    for &score in &scores[1..] {
+        if score > max_score {
+            max_score = score;
+            max_count += 1; // Збільшуємо лічильник для максимального рекорду
+        } else if score < min_score {
+            min_score = score;
+            min_count += 1; // Збільшуємо лічильник для мінімального рекорду
+        }
+    }
+
+    vec![max_count, min_count] // Повертаємо результати
+}
+
+fn main() {
+    let scores = vec![10, 5, 20, 20, 4, 5, 2, 25, 1]; // Приклад масиву scores
+
+    let result = breaking_records(scores);
+    println!("{:?}", result); // Виводимо результат
+}
