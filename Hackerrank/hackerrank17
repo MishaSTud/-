@@ -1,0 +1,38 @@
+fn migratory_birds(arr: Vec<i32>) -> i32 {
+    use std::collections::HashMap;
+
+    let mut counts = HashMap::new();
+    for &bird in &arr {
+        *counts.entry(bird).or_insert(0) += 1;
+    }
+
+    let mut max_count = 0;
+    let mut min_id = i32::MAX;
+
+    for (&id, &count) in &counts {
+        if count > max_count || (count == max_count && id < min_id) {
+            max_count = count;
+            min_id = id;
+        }
+    }
+
+    min_id
+}
+
+fn main() {
+    let stdin = std::io::stdin();
+    let mut input = String::new();
+    stdin.read_line(&mut input).unwrap();
+    let arr_count: usize = input.trim().parse().unwrap();
+
+    input.clear();
+    stdin.read_line(&mut input).unwrap();
+    let arr: Vec<i32> = input
+        .trim()
+        .split_whitespace()
+        .map(|s| s.parse().unwrap())
+        .collect();
+
+    let result = migratory_birds(arr);
+    println!("{}", result);
+}
