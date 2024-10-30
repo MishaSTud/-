@@ -1,0 +1,34 @@
+fn is_palindrome(x: u32) -> bool {
+    let mut reversed = 0;
+    let mut temp = x;
+
+    while temp != 0 {
+        let digit = temp % 10;
+        reversed = reversed * 10 + digit;
+        temp /= 10;
+    }
+
+    reversed == x
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_is_palindrome() {
+        let data = [
+            (123, false),
+            (121, true),
+            (1221, true),
+        ];
+
+        for (n, exp) in data.iter() {
+            assert_eq!(is_palindrome(*n), *exp);
+        }
+    }
+}
+
+fn main() {
+    println!("{}", is_palindrome(121));
+}
