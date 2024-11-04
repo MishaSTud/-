@@ -1,0 +1,62 @@
+use std::collections::HashSet;
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+#[derive(Debug)]
+struct Rectangle {
+    top_left: Point,     // Верхня ліва точка
+    bottom_right: Point, // Нижня права точка
+}
+
+impl Rectangle {
+    fn new(x1: i32, y1: i32, x2: i32, y2: i32) -> Self {
+        Rectangle {
+            top_left: Point { x: x1, y: y1 },
+            bottom_right: Point { x: x2, y: y2 },
+        }
+    }
+
+    // Метод для обчислення площі прямокутника
+    fn area(&self) -> i32 {
+        (self.bottom_right.x - self.top_left.x).abs() *
+        (self.bottom_right.y - self.top_left.y).abs()
+    }
+}
+
+// Функція для обчислення загальної площі з урахуванням перетинів
+fn calculate_total_area(rectangles: &[Rectangle]) -> i32 {
+    let mut points = HashSet::new();
+
+    // Проходимо по кожному прямокутнику
+    for rect in rectangles {
+        // Додаємо всі точки прямокутника до множини
+        for x in rect.top_left.x..=rect.bottom_right.x {
+            for y in rect.bottom_right.y..=rect.top_left.y {
+                points.insert(Point { x, y });
+            }
+        }
+    }
+
+    // Повертаємо кількість унікальних точок
+    points.len() as i32
+}
+
+fn main() {
+    let rectangles = vec![
+        Rectangle::new(2, 7, 5, 3),  // Чорний прямокутник
+        Rectangle::new(1, 6, 10, 5), // Зелений прямокутник
+        Rectangle::new(9, 9, 13, 2), // Синій прямокутник
+    ];
+
+    // Обчислюємо загальну площу з урахуванням перетинів
+    let total_area = calculate_total_area(&rectangles);
+    // Обчислюємо суму площ окремих прямокутників
+    let sum_of_areas: i32 = rectangles.iter().map(|r| r.area()).sum();
+
+    println!("Загальна площа (з урахуванням перетинів): {}", total_area);
+    println!("Сума площ прямокутників: {}", sum_of_areas);
+}
