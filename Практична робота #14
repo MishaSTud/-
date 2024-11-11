@@ -20,20 +20,20 @@ impl Rectangle {
         }
     }
 
-    // Метод для обчислення площі прямокутника
+    
     fn area(&self) -> i32 {
         (self.bottom_right.x - self.top_left.x).abs() *
         (self.bottom_right.y - self.top_left.y).abs()
     }
 }
 
-// Функція для обчислення загальної площі з урахуванням перетинів
+
 fn calculate_total_area(rectangles: &[Rectangle]) -> i32 {
     let mut points = HashSet::new();
 
-    // Проходимо по кожному прямокутнику
+    
     for rect in rectangles {
-        // Додаємо всі точки прямокутника до множини
+        
         for x in rect.top_left.x..=rect.bottom_right.x {
             for y in rect.bottom_right.y..=rect.top_left.y {
                 points.insert(Point { x, y });
@@ -41,7 +41,7 @@ fn calculate_total_area(rectangles: &[Rectangle]) -> i32 {
         }
     }
 
-    // Повертаємо кількість унікальних точок
+    
     points.len() as i32
 }
 
