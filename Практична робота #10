@@ -1,9 +1,9 @@
 fn rotate(s: String, n: isize) -> String {
     let len = s.len() as isize;
-    let shift = (n % len + len) % len; // Обчислення зсуву з врахуванням негативних значень
+    let shift = (n % len + len) % len; 
     let split = shift as usize;
     
-    // Обрізаємо рядок на дві частини і міняємо їх місцями
+   
     format!("{}{}", &s[split..], &s[..split])
 }
 
