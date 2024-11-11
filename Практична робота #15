@@ -7,12 +7,12 @@ fn gray(n: u8) -> Vec<String> {
         let prev = gray(n - 1);
         let mut result = Vec::new();
 
-        // Prepend "0" to the original sequence
+        
         for code in &prev {
             result.push(format!("0{}", code));
         }
 
-        // Prepend "1" to the reversed sequence
+       
         for code in prev.iter().rev() {
             result.push(format!("1{}", code));
         }
