@@ -22,7 +22,7 @@ fn gray(n: u8) -> Vec<String> {
 }
 
 fn main() {
-    // Main function can be left empty if only tests are needed.
+   
 }
 
 #[cfg(test)]
