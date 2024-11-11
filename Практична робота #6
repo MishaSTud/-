@@ -1,4 +1,4 @@
-// Функція для обчислення найбільшого спільного дільника (GCD) за алгоритмом Евкліда
+
 fn gcd(a: u32, b: u32) -> u32 {
     let mut a = a;
     let mut b = b;
@@ -12,7 +12,7 @@ fn gcd(a: u32, b: u32) -> u32 {
     a
 }
 
-// Головна функція, яка викликається при запуску програми
+
 fn main() {
     let num1 = 48;
     let num2 = 18;
@@ -23,7 +23,7 @@ fn main() {
 mod tests {
     use super::;
 
-    // Тести для функції gcd
+    
     #[test]
     fn test_gcd() {
         let data = [
@@ -40,7 +40,7 @@ mod tests {
             ((120, 90), 30),
         ];
 
-        // Перевірка кожного тестового випадку
+        
         for ((a, b), expected) in data.iter() {
             assert_eq!(expected, gcd(a,b));
         }
